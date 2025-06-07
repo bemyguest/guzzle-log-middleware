@@ -2,9 +2,11 @@
 
 namespace Concat\Http\Middleware;
 
+use Closure;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LogLevel;
@@ -243,7 +245,7 @@ class Logger
                 $this->log($request, null, $reason);
             }
 
-            return Promise\rejection_for($reason);
+            return Create::rejectionFor($reason);
         };
     }
 
